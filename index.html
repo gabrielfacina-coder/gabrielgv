@@ -1,19 +1,304 @@
-<DOTYPE HTML> 
-  <html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<html lang= PT-BR>
-<meta charset =UTF-8>
- <titlte>
-  MINHA PG
-  <body>
-<h1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperBikes | Motos de Alta Cilindrada</title>
+    <style>
+        /* RESET E CONFIGURAÇÕES GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
-</h1>
-    </body>
-  </title>
+        body {
+            background-color: #0b0b0b;
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background-color: #111;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ff1e1e;
+        }
+
+        header .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        header .logo span {
+            color: #ff1e1e;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin-left: 25px;
+        }
+
+        header nav ul li a {
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #ff1e1e;
+        }
+
+        /* BANNER PRINCIPAL (HERO) */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=1600&q=80') no-repeat center center/cover;
+            height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero h1 span {
+            color: #ff1e1e;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            color: #ccc;
+        }
+
+        .hero .btn {
+            background-color: #ff1e1e;
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 18px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .hero .btn:hover {
+            background-color: #d11212;
+            transform: scale(1.05);
+        }
+
+        /* VITRINE DE MOTOS */
+        .vitrine {
+            padding: 60px 5%;
+            background-color: #161616;
+        }
+
+        .vitrine h2 {
+            text-align: center;
+            font-size: 36px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .vitrine h2 span {
+            color: #ff1e1e;
+        }
+
+        .grid-motos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card-moto {
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid #333;
+        }
+
+        .card-moto:hover {
+            transform: translateY(-10px);
+            border-color: #ff1e1e;
+        }
+
+        .img-moto {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .info-moto {
+            padding: 25px;
+        }
+
+        .info-moto h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .info-moto .cilindrada {
+            color: #ff1e1e;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .info-moto .preco {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .info-moto .btn-detalhes {
+            display: block;
+            text-align: center;
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #ff1e1e;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .info-moto .btn-detalhes:hover {
+            background-color: #ff1e1e;
+            color: #fff;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background-color: #0b0b0b;
+            padding: 40px 5% 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            header nav ul {
+                padding: 0;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
-  </html>
+<body>
 
-  </head>
+    <header>
+        <div class="logo">HYPER<span>BIKES</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#Estoque">Estoque</a></li>
+                <li><a href="#">Sobre nós</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  </html>
+    <section class="hero">
+        <h1>Sinta a verdadeira <span>Potência</span></h1>
+        <p>As máquinas mais velozes do planeta e as melhores marcas de alta cilindrada selecionadas para você.</p>
+        <a href="#Estoque" class="btn">Ver Estoque</a>
+    </section>
+
+    <section class="vitrine" id="Estoque">
+        <h2>Máquinas <span>Disponíveis</span></h2>
+        
+        <div class="grid-motos">
+            
+            <div class="card-moto">
+                <div class="img-moto" style="background-image: url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&q=80');"></div>
+                <div class="info-moto">
+                    <h3>Super Sport 1000R</h3>
+                    <div class="cilindrada">1000cc • 200cv</div>
+                    <div class="preco">R$ 98.900,00</div>
+                    <a href="#" class="btn-detalhes">Tenho Interesse</a>
+                </div>
+            </div>
+
+            <div class="card-moto">
+                <div class="img-moto" style="background-image: url('https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=600&q=80');"></div>
+                <div class="info-moto">
+                    <h3>Dark Naked V4</h3>
+                    <div class="cilindrada">1100cc • 175cv</div>
+                    <div class="preco">R$ 87.500,00</div>
+                    <a href="#" class="btn-detalhes">Tenho Interesse</a>
+                </div>
+            </div>
+
+            <div class="card-moto">
+                <div class="img-moto" style="background-image: url('https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?w=600&q=80');"></div>
+                <div class="info-moto">
+                    <h3>Adventure Tourer 1250</h3>
+                    <div class="cilindrada">1250cc • 136cv</div>
+                    <div class="preco">R$ 112.000,00</div>
+                    <a href="#" class="btn-detalhes">Tenho Interesse</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 HyperBikes Premium. Todos os direitos reservados.</p>
+        <p>Modelos esportivos, nakeds e adventure de alta performance.</p>
+    </footer>
+
+</body>
+</html>
